@@ -15,12 +15,15 @@ import android.widget.Button;
 public class MainActivity extends Activity implements OnClickListener {
 	final String SUGGESTED_URL = "rtmp://liveradio.irib.ir/livepkgr/javan";
 	Button mPlayButton;
+	boolean isThisActivityCreated = false;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		if (!io.vov.vitamio.LibsChecker.checkVitamioLibs(this))
 			return;
+		isThisActivityCreated = true;
+
 		setContentView(R.layout.activity_main);
 		mPlayButton = (Button) findViewById(R.id.buttonPlay);
 		mPlayButton.setOnClickListener(this);
@@ -49,7 +52,9 @@ public class MainActivity extends Activity implements OnClickListener {
 	protected void onDestroy() {
 		// TODO Auto-generated method stub
 		super.onDestroy();
-		startService(new Intent(RadioService.ACTION_STOP));
+		if (isThisActivityCreated) {
+			startService(new Intent(RadioService.ACTION_STOP));
+		}
 
 	}
 

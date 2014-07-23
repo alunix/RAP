@@ -4,7 +4,7 @@
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
     <string name="vitamio_library_app_name">VitamioLibrary</string>
-    <string name="vitamio_init_decoders">Initializing decoders…</string>
+    <string name="vitamio_init_decoders">در حال بارگزاری اولیه</string>
     <string name="permission_group_tools_label">Vitamio tools</string>
     <string name="permission_group_tools_description">Access Vitamio package and resources.</string>
     <string name="permission_receive_messages_label">Receive Vitamio messages</string>
@@ -17,5 +17,6 @@
     <string name="VideoView_error_text_unknown">Sorry, this video cannot be played.</string>
     <string name="VideoView_error_button">OK</string>
     <string name="mediacontroller_play_pause">Play/Pause</string>
+    <string name="radio_javan">رادیو جوان</string>
 
 </resources>
