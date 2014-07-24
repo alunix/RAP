@@ -31,29 +31,34 @@ public final class R {
         public static final int dummy_album_art=0x7f020001;
         public static final int ic_launcher=0x7f020002;
         public static final int ic_stat_playing=0x7f020003;
-        public static final int mediacontroller_button=0x7f020004;
-        public static final int mediacontroller_pause=0x7f020005;
-        public static final int mediacontroller_play=0x7f020006;
-        public static final int scrubber_control_disabled_holo=0x7f020007;
-        public static final int scrubber_control_focused_holo=0x7f020008;
-        public static final int scrubber_control_normal_holo=0x7f020009;
-        public static final int scrubber_control_pressed_holo=0x7f02000a;
-        public static final int scrubber_control_selector_holo=0x7f02000b;
-        public static final int scrubber_primary_holo=0x7f02000c;
-        public static final int scrubber_progress_horizontal_holo_dark=0x7f02000d;
-        public static final int scrubber_secondary_holo=0x7f02000e;
-        public static final int scrubber_track_holo_dark=0x7f02000f;
+        public static final int logo_javan=0x7f020004;
+        public static final int mediacontroller_button=0x7f020005;
+        public static final int mediacontroller_pause=0x7f020006;
+        public static final int mediacontroller_play=0x7f020007;
+        public static final int pause_white=0x7f020008;
+        public static final int play_white=0x7f020009;
+        public static final int scrubber_control_disabled_holo=0x7f02000a;
+        public static final int scrubber_control_focused_holo=0x7f02000b;
+        public static final int scrubber_control_normal_holo=0x7f02000c;
+        public static final int scrubber_control_pressed_holo=0x7f02000d;
+        public static final int scrubber_control_selector_holo=0x7f02000e;
+        public static final int scrubber_primary_holo=0x7f02000f;
+        public static final int scrubber_progress_horizontal_holo_dark=0x7f020010;
+        public static final int scrubber_secondary_holo=0x7f020011;
+        public static final int scrubber_track_holo_dark=0x7f020012;
     }
     public static final class id {
-        public static final int LinearLayout01=0x7f0a0000;
-        public static final int action_settings=0x7f0a0008;
-        public static final int buttonPlay=0x7f0a0002;
-        public static final int mediacontroller_file_name=0x7f0a0007;
-        public static final int mediacontroller_play_pause=0x7f0a0003;
-        public static final int mediacontroller_seekbar=0x7f0a0006;
-        public static final int mediacontroller_time_current=0x7f0a0004;
-        public static final int mediacontroller_time_total=0x7f0a0005;
-        public static final int textView1=0x7f0a0001;
+        public static final int FrameLayout01=0x7f0a0000;
+        public static final int LinearLayout01=0x7f0a0001;
+        public static final int Logo=0x7f0a0002;
+        public static final int action_settings=0x7f0a000a;
+        public static final int buttonPlay=0x7f0a0004;
+        public static final int mediacontroller_file_name=0x7f0a0009;
+        public static final int mediacontroller_play_pause=0x7f0a0005;
+        public static final int mediacontroller_seekbar=0x7f0a0008;
+        public static final int mediacontroller_time_current=0x7f0a0006;
+        public static final int mediacontroller_time_total=0x7f0a0007;
+        public static final int textView1=0x7f0a0003;
     }
     public static final class layout {
         public static final int activity_main=0x7f030000;
@@ -73,6 +78,7 @@ public final class R {
         public static final int action_settings=0x7f06000f;
         public static final int app_name=0x7f06000d;
         public static final int hello_world=0x7f06000e;
+        public static final int loading=0x7f060011;
         public static final int mediacontroller_play_pause=0x7f06000c;
         public static final int permission_group_tools_description=0x7f060003;
         public static final int permission_group_tools_label=0x7f060002;
@@ -80,6 +86,7 @@ public final class R {
         public static final int permission_receive_messages_label=0x7f060004;
         public static final int permission_write_providers_description=0x7f060007;
         public static final int permission_write_providers_label=0x7f060006;
+        public static final int playing=0x7f060012;
         public static final int radio_javan=0x7f060010;
         public static final int vitamio_init_decoders=0x7f060001;
         public static final int vitamio_library_app_name=0x7f060000;

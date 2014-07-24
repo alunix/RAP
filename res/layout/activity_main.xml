@@ -1,20 +1,42 @@
-<LinearLayout android:id="@+id/LinearLayout01" 
-              android:layout_width="fill_parent" 
-              android:layout_height="fill_parent" 
-              xmlns:android="http://schemas.android.com/apk/res/android"
-              android:background="@drawable/back_javan">
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/FrameLayout01"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@drawable/back_javan" >
 
-    <TextView
-        android:id="@+id/textView1"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:id="@+id/LinearLayout01"
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:text="@string/hello_world" />
+        android:orientation="vertical" >
 
-    <Button
+        <ImageView
+            android:id="@+id/Logo"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/logo_javan"
+            android:padding="10dp" />
+
+        <TextView
+            android:id="@+id/textView1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:padding="10dp"
+            android:singleLine="true"
+            android:text="@string/radio_javan"
+            android:textColor="#f5f2f2"
+            android:textSize="24dp" />
+
+    </LinearLayout>
+
+    <ImageButton
         android:id="@+id/buttonPlay"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="23dp"
-        android:text="Button" />
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_gravity="center"
+        android:background="@drawable/play_white" />
 
-</LinearLayout>
+</FrameLayout>

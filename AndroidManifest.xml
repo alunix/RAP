@@ -38,12 +38,16 @@
             android:name=".RadioService"
             android:exported="false" >
             <intent-filter>
-                <action android:name="com.example.android.musicplayer.action.TOGGLE_PLAYBACK" />
                 <action android:name="com.example.android.musicplayer.action.PAUSE" />
                 <action android:name="com.example.android.musicplayer.action.STOP" />
             </intent-filter>
             <intent-filter>
                 <action android:name="com.example.android.musicplayer.action.PLAY" />
+
+                <data android:scheme="rtmp" />
+            </intent-filter>
+            <intent-filter>
+                <action android:name="com.example.android.musicplayer.action.TOGGLE_PLAYBACK" />
 
                 <data android:scheme="rtmp" />
             </intent-filter>

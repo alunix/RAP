@@ -108,7 +108,7 @@ public class RadioService extends Service implements OnPreparedListener,
 	WifiLock mWifiLock;
 
 	Uri radioStationUri;
-	String radioStationTitle = "Javan";
+	String radioStationTitle;
 
 	// The ID we use for the notification (the onscreen alert that appears at
 	// the notification
@@ -168,6 +168,9 @@ public class RadioService extends Service implements OnPreparedListener,
 	@Override
 	public void onCreate() {
 		Log.i(TAG, "debug: Creating service");
+
+		radioStationTitle = PersianReshape.reshape(getResources().getString(
+				R.string.radio_javan));
 
 		// Create the Wifi lock (this does not acquire the lock, this just
 		// creates it)
@@ -384,7 +387,9 @@ public class RadioService extends Service implements OnPreparedListener,
 			}
 
 			mState = State.Preparing;
-			setUpAsForeground(station + " (loading)");
+			setUpAsForeground(PersianReshape.reshape(getResources().getString(
+					R.string.loading))
+					+ " " + station);
 
 			// Use the media button APIs (if available) to register ourselves
 			// for media button
@@ -464,7 +469,9 @@ public class RadioService extends Service implements OnPreparedListener,
 	public void onPrepared(MediaPlayer player) {
 		// The media player is done preparing. That means we can start playing!
 		mState = State.Playing;
-		updateNotification(radioStationTitle + " (playing)");
+		updateNotification(PersianReshape.reshape(getResources().getString(
+				R.string.playing))
+				+ " " + radioStationTitle);
 		configAndStartMediaPlayer();
 	}
 
@@ -473,8 +480,8 @@ public class RadioService extends Service implements OnPreparedListener,
 		PendingIntent pi = PendingIntent.getActivity(getApplicationContext(),
 				0, new Intent(getApplicationContext(), MainActivity.class),
 				PendingIntent.FLAG_UPDATE_CURRENT);
-		mNotification.setLatestEventInfo(getApplicationContext(),
-				"IRIB Radio", text, pi);
+		mNotification.setLatestEventInfo(getApplicationContext(), "IRIB Radio",
+				text, pi);
 		mNotificationManager.notify(NOTIFICATION_ID, mNotification);
 	}
 
@@ -492,8 +499,8 @@ public class RadioService extends Service implements OnPreparedListener,
 		mNotification.tickerText = text;
 		mNotification.icon = R.drawable.ic_stat_playing;
 		mNotification.flags |= Notification.FLAG_ONGOING_EVENT;
-		mNotification.setLatestEventInfo(getApplicationContext(),
-				"IRIB Radio", text, pi);
+		mNotification.setLatestEventInfo(getApplicationContext(), "IRIB Radio",
+				text, pi);
 		startForeground(NOTIFICATION_ID, mNotification);
 	}
 
