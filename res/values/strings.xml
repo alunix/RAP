@@ -20,5 +20,6 @@
     <string name="radio_javan">رادیو جوان</string>
     <string name="loading">در حال بارگزاری </string>
     <string name="playing">در حال پخش </string>
+    <string name="radio">رادیو</string>
 
 </resources>

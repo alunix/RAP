@@ -26,6 +26,7 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+
         </activity>
         <activity
             android:name="io.vov.vitamio.activity.InitActivity"
@@ -38,16 +39,17 @@
             android:name=".RadioService"
             android:exported="false" >
             <intent-filter>
-                <action android:name="com.example.android.musicplayer.action.PAUSE" />
-                <action android:name="com.example.android.musicplayer.action.STOP" />
+                <action android:name="com.returnzero.radio.player.action.PAUSE" />
+                <action android:name="com.returnzero.radio.player.action.STOP" />
+               <action android:name="com.returnzero.radio.player.action.UPDATE_ME" />
             </intent-filter>
             <intent-filter>
-                <action android:name="com.example.android.musicplayer.action.PLAY" />
+                <action android:name="com.returnzero.radio.player.action.PLAY" />
 
                 <data android:scheme="rtmp" />
             </intent-filter>
             <intent-filter>
-                <action android:name="com.example.android.musicplayer.action.TOGGLE_PLAYBACK" />
+                <action android:name="com.returnzero.radio.player.action.TOGGLE_PLAYBACK" />
 
                 <data android:scheme="rtmp" />
             </intent-filter>

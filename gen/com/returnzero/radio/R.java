@@ -30,7 +30,7 @@ public final class R {
         public static final int back_javan=0x7f020000;
         public static final int dummy_album_art=0x7f020001;
         public static final int ic_launcher=0x7f020002;
-        public static final int ic_stat_playing=0x7f020003;
+        public static final int ic_radio=0x7f020003;
         public static final int logo_javan=0x7f020004;
         public static final int mediacontroller_button=0x7f020005;
         public static final int mediacontroller_pause=0x7f020006;
@@ -87,6 +87,7 @@ public final class R {
         public static final int permission_write_providers_description=0x7f060007;
         public static final int permission_write_providers_label=0x7f060006;
         public static final int playing=0x7f060012;
+        public static final int radio=0x7f060013;
         public static final int radio_javan=0x7f060010;
         public static final int vitamio_init_decoders=0x7f060001;
         public static final int vitamio_library_app_name=0x7f060000;

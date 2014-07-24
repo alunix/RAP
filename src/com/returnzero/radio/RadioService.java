@@ -49,10 +49,13 @@ public class RadioService extends Service implements OnPreparedListener,
 	// service can handle are the <action> tags in the <intent-filters> tag for
 	// our service in
 	// AndroidManifest.xml.
-	public static final String ACTION_TOGGLE_PLAYBACK = "com.example.android.musicplayer.action.TOGGLE_PLAYBACK";
-	public static final String ACTION_PLAY = "com.example.android.musicplayer.action.PLAY";
-	public static final String ACTION_PAUSE = "com.example.android.musicplayer.action.PAUSE";
-	public static final String ACTION_STOP = "com.example.android.musicplayer.action.STOP";
+	
+	// The UPDATE_ME action is for mainactivity to request the status of player
+	public static final String ACTION_TOGGLE_PLAYBACK = "com.returnzero.radio.player.action.TOGGLE_PLAYBACK";
+	public static final String ACTION_PLAY = "com.returnzero.radio.player.action.PLAY";
+	public static final String ACTION_PAUSE = "com.returnzero.radio.player.action.PAUSE";
+	public static final String ACTION_STOP = "com.returnzero.radio.player.action.STOP";
+	public static final String ACTION_UPDATEME = "com.returnzero.radio.player.action.UPDATE_ME";
 
 	// The volume we set the media player to when we lose audio focus, but are
 	// allowed to reduce
@@ -214,6 +217,8 @@ public class RadioService extends Service implements OnPreparedListener,
 			processPauseRequest();
 		else if (action.equals(ACTION_STOP))
 			processStopRequest();
+		else if (action.equals(ACTION_UPDATEME))
+			updateActivity();
 
 		return START_NOT_STICKY; // Means we started the service, but don't want
 									// it to
@@ -243,7 +248,10 @@ public class RadioService extends Service implements OnPreparedListener,
 			// If we're paused, just continue playback and restore the
 			// 'foreground service' state.
 			mState = State.Playing;
-			setUpAsForeground(radioStationTitle + " (playing)");
+			updateActivity();
+			setUpAsForeground(PersianReshape.reshape(getResources().getString(
+					R.string.playing))
+					+ ": " + radioStationTitle);
 			configAndStartMediaPlayer();
 		}
 
@@ -266,6 +274,7 @@ public class RadioService extends Service implements OnPreparedListener,
 		if (mState == State.Playing) {
 			// Pause media player and cancel the 'foreground service' state.
 			mState = State.Paused;
+			updateActivity();
 			mPlayer.pause();
 			relaxResources(false); // while paused, we always retain the
 									// MediaPlayer
@@ -286,6 +295,7 @@ public class RadioService extends Service implements OnPreparedListener,
 	void processStopRequest(boolean force) {
 		if (mState == State.Playing || mState == State.Paused || force) {
 			mState = State.Stopped;
+			updateActivity();
 
 			// let go of all resources...
 			relaxResources(true);
@@ -427,10 +437,8 @@ public class RadioService extends Service implements OnPreparedListener,
 			// Update the remote controls
 			mRemoteControlClientCompat
 					.editMetadata(true)
-					.putString(MediaMetadataRetriever.METADATA_KEY_ARTIST,
-							station)
-					.putString(MediaMetadataRetriever.METADATA_KEY_ALBUM,
-							station)
+					.putString(MediaMetadataRetriever.METADATA_KEY_ARTIST, " ")
+					.putString(MediaMetadataRetriever.METADATA_KEY_ALBUM, " ")
 					.putString(MediaMetadataRetriever.METADATA_KEY_TITLE,
 							station)
 					.putLong(MediaMetadataRetriever.METADATA_KEY_DURATION, 0)
@@ -469,9 +477,10 @@ public class RadioService extends Service implements OnPreparedListener,
 	public void onPrepared(MediaPlayer player) {
 		// The media player is done preparing. That means we can start playing!
 		mState = State.Playing;
+		updateActivity();
 		updateNotification(PersianReshape.reshape(getResources().getString(
 				R.string.playing))
-				+ " " + radioStationTitle);
+				+ ": " + radioStationTitle);
 		configAndStartMediaPlayer();
 	}
 
@@ -497,9 +506,11 @@ public class RadioService extends Service implements OnPreparedListener,
 				PendingIntent.FLAG_UPDATE_CURRENT);
 		mNotification = new Notification();
 		mNotification.tickerText = text;
-		mNotification.icon = R.drawable.ic_stat_playing;
+		mNotification.icon = R.drawable.ic_radio;
 		mNotification.flags |= Notification.FLAG_ONGOING_EVENT;
-		mNotification.setLatestEventInfo(getApplicationContext(), "IRIB Radio",
+		mNotification.setLatestEventInfo(getApplicationContext(),
+				PersianReshape
+						.reshape(getResources().getString(R.string.radio)),
 				text, pi);
 		startForeground(NOTIFICATION_ID, mNotification);
 	}
@@ -517,6 +528,8 @@ public class RadioService extends Service implements OnPreparedListener,
 						+ String.valueOf(extra));
 
 		mState = State.Stopped;
+		updateActivity();
+
 		relaxResources(true);
 		giveUpAudioFocus();
 		return true; // true indicates we handled the error
@@ -548,6 +561,7 @@ public class RadioService extends Service implements OnPreparedListener,
 	public void onDestroy() {
 		// Service is being killed, so make sure we release our resources
 		mState = State.Stopped;
+		updateActivity();
 		relaxResources(true);
 		giveUpAudioFocus();
 	}
@@ -555,5 +569,17 @@ public class RadioService extends Service implements OnPreparedListener,
 	@Override
 	public IBinder onBind(Intent arg0) {
 		return null;
+	}
+
+	// this method updates activity when the status of the player changes
+
+	public void updateActivity() {
+		if (mState == State.Playing) {
+			Intent intent = new Intent(MainActivity.STATUS_PLAYING);
+			sendBroadcast(intent);
+		} else {
+			Intent intent = new Intent(MainActivity.STATUS_PAUSED);
+			sendBroadcast(intent);
+		}
 	}
 }
