@@ -1,5 +1,11 @@
 A simple but beautiful online radio broadcasting app with many Persian stations with different genres.
 
+یک رادیوی اندرویدی ساده اما زیبا. دارای کانال های متنوع فارسی با موضوعات گوناگون
+
+![](https://github.com/fnozarian/RAP/blob/master/demo/play_screen.jpg)
+![](https://github.com/fnozarian/RAP/blob/master/demo/main.jpg)
+![](https://github.com/fnozarian/RAP/blob/master/demo/play_screen.jpg)
+![](https://github.com/fnozarian/RAP/blob/master/demo/splash_screen.jpg)
 قابلیت نمایش طبقه بندی و لیست ایستگاه های رادیویی 
 ---
 - 3 طبقه بندی ثابت  ایستگاه های رادیویی با نام های "اصلی"، "استانی" و "برون مرزی"
